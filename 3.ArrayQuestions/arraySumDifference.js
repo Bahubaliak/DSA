@@ -1,5 +1,7 @@
 // link = https://leetcode.com/problems/left-and-right-sum-differences/
 
+
+
 var leftRightDifference = function(nums) {
   if (nums.length == 0) return [0]
   let answer = []
