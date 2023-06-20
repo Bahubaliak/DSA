@@ -10,4 +10,4 @@ var isPowerOfFour = function(n) {
 
 let answer = isPowerOfFour(16)
 
-console.log(answer)
+console.log('answer is ',answer)
