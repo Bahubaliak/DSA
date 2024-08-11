@@ -8,12 +8,14 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null
+    this.tail = null
   }
 
   add(data) {
     let newNode = new Node(data)
     if (!this.head) {
       this.head = newNode
+      this.tail = newNode
     } else {
       let current = this.head
       while (current.next) {
@@ -21,6 +23,7 @@ class LinkedList {
       }
 
       current.next = newNode
+      this.tail = newNode
     }
   }
 
@@ -30,11 +33,21 @@ class LinkedList {
     this.head = newNode
   }
 
+  addLast(data) {
+    let newNode = new Node(data)
+    this.tail.next = newNode
+    this.tail = newNode
+  }
+
   deleteFirst() {
     if (!this.head) {
       return
     }
     this.head = this.head.next
+
+    if (this.head == null) {
+      this.tail = null
+    }
   }
 
   delete(data) {
@@ -46,6 +59,13 @@ class LinkedList {
       this.head = this.head.next
     }
 
+    if (!this.head) {
+      this.tail = this.head
+      console.log('tail ->', this.tail)
+      console.log('head ->', this.head)
+      return
+    }
+
     let current = this.head
     let previous = null
 
@@ -54,11 +74,8 @@ class LinkedList {
       current = current.next
     }
 
-    if (!current) {
-      return
-    }
-
     previous.next = current.next
+    this.tail = previous
   }
 
   display() {
@@ -68,6 +85,7 @@ class LinkedList {
       console.log(current.data)
       current = current.next
     }
+    console.log('tail -> ',this.tail.data)
   }
 }
 
@@ -77,10 +95,12 @@ linkedlist.add(10)
 linkedlist.add(20)
 linkedlist.addFirst(-100)
 linkedlist.add(30)
-linkedlist.deleteFirst()
-linkedlist.deleteFirst()
-linkedlist.deleteFirst()
-linkedlist.deleteFirst()
+// linkedlist.deleteFirst()
+// linkedlist.deleteFirst()
+// linkedlist.deleteFirst()
+// linkedlist.deleteFirst()
+linkedlist.delete(30)
+linkedlist.addLast(40)
 linkedlist.display()
 
 
