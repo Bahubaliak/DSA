@@ -9,6 +9,7 @@ var checkAscending = function (arr, index) {
   let tempAnswer = checkAscending(arr, index+1)
 
   let result = tempAnswer && arr[index] <= arr[index+1]
+  // return arr[index] <= arr[index+1] && checkAscending(arr, index+1)
 
   return result
 }
