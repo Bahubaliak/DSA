@@ -1,0 +1,52 @@
+// https://leetcode.com/problems/split-linked-list-in-parts/description/
+
+var splitListToParts = function(head, k) {
+    //find size of given LL
+    let size = 0
+    let temp = head
+
+    while(temp != null) {
+      size++
+      temp = temp.next
+    }
+
+    // return array of head
+    let res = new Array(k).fill(null)
+
+    temp = head
+    // take avg, means at least one node to be added to res
+    let avg = Math.floor(size/k)
+    // find how many extra nodes are there, so we can add one more node to each head from left to right
+    let extra = size % k
+
+    for (let i = 0; i < k; i++) {
+      if (temp == null) {
+        break;
+      }
+  
+      let currHead = temp
+      // take prev pointer to detach after adding node to each head
+      let prev = null
+      // length tells how many node to be added to each head
+      let length = 0
+
+      while(temp != null && length < avg) {
+        // first move prev pointer
+        prev = temp
+        temp = temp.next
+        length++
+      }
+
+      if (extra > 0) {
+        prev = temp
+        temp = temp.next
+        extra--
+      }
+
+      prev.next = null
+
+      res[i] = currHead
+    }
+
+    return res
+};
